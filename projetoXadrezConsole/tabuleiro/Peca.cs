@@ -13,11 +13,11 @@
         public Peca()
         {
         }
-        public Peca(Posicao posicao, Tabuleiro tab, Cor cor)
+        public Peca(Tabuleiro tab, Cor cor)
         {
-            this.posicao = posicao;
             this.tab = tab;
             this.cor = cor;
+            this.posicao = null;
             this.qteMovimentos = 0;//PEÇA INICIA COM 0 MOVIMENTOS
         }
 

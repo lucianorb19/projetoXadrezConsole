@@ -24,6 +24,13 @@
             return pecas[linha, coluna];
         }
 
+        //MÉTODO QUE ADICIONA UMA PEÇA AO TABULEIRO
+        public void colocarPeca(Peca p, Posicao pos)
+        {
+            pecas[pos.linha, pos.coluna] = p;//MATRIZ RECEBE A PEÇA NA POSIÇÃO ESPECÍFICA
+            p.posicao = pos;//ESSA PEÇA GUARDA A INFORMAÇÃO DE SEU LOCAL
+        }
+
 
 
     }
