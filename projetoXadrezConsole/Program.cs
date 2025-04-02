@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using tabuleiro;
 using xadrez;
 
@@ -10,15 +11,10 @@ namespace projetoXadrezConsole
         {
             try
             {
-                //INSTANCIAÇÃO TABULEIRO VAZIO
-                Tabuleiro tab = new Tabuleiro(8, 8);
-
-                //ADICIONANDO PEÇAS AO TABULEIRO
-                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
-                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 5));
-                tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 2));
-
-                Tela.imprimirTabuleiro(tab);
+                PosicaoXadrez pos = new PosicaoXadrez('c', 7);
+                Console.WriteLine(pos);
+                Console.WriteLine(pos.toPosicao());
+                
 
             }
             catch (TabuleiroException e)
