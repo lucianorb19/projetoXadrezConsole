@@ -21,6 +21,12 @@
             this.qteMovimentos = 0;//PEÇA INICIA COM 0 MOVIMENTOS
         }
 
+        //DEMAIS MÉTODOS
+        public void incrementarQtdMovimentos()
+        {
+            this.qteMovimentos++;
+        }
+
 
     }
 }

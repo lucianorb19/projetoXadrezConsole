@@ -1,4 +1,5 @@
-﻿using System;
+﻿using projetoXadrezConsole.xadrez;
+using System;
 using System.Data;
 using tabuleiro;
 using xadrez;
@@ -11,15 +12,8 @@ namespace projetoXadrezConsole
         {
             try
             {
-                Tabuleiro tab = new Tabuleiro(8, 8);
-
-                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
-                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
-                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 2));
-                tab.colocarPeca(new Torre(tab, Cor.Branca), new Posicao(3, 5));
-
-
-                Tela.imprimirTabuleiro(tab);
+                PartidaDeXadrez partida = new PartidaDeXadrez();
+                Tela.imprimirTabuleiro(partida.tab);
 
 
             }

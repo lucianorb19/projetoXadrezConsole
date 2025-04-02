@@ -42,6 +42,19 @@
             p.posicao = pos;//ESSA PEÇA GUARDA A INFORMAÇÃO DE SEU LOCAL
         }
 
+        //MÉTODO QUE RETIRA UMA PEÇA DO TABULEIRO DADA UMA POSIÇÃO COM PEÇA
+        public Peca retirarPeca(Posicao pos)
+        {
+            if(peca(pos) == null)
+            {
+                return null;
+            }
+            Peca aux = peca(pos);
+            aux.posicao = null;
+            pecas[pos.linha, pos.coluna] = null;
+            return aux;//PEÇA É RETIRADA DO TABULEIRO, MAS O MÉTODO RETONA A PEÇA.
+        }
+
         //MÉTODO BOOL QUE VALIDA UMA POSIÇÃO - AUXILIAR DO MÉTODO ABAIXO
         public bool posicaoValida(Posicao pos)
         {
