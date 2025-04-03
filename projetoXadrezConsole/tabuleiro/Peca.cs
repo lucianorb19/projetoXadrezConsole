@@ -27,6 +27,34 @@
             this.qteMovimentos++;
         }
 
+        //MÉTODO BOOL - AVALIA SE NA MATRIZ DE MOVIMENTOS POSSÍVEIS HÁ AO MENOS UMA POSIÇÃO TRUE
+        //OU SEJA, HÁ ALGUMA MOVIMENTO POSSÍVEL PARA AQUELA PEÇA?
+        public bool existeMovimentosPossiveis()
+        {
+            bool[,] mat = movimentosPossiveis();
+            for(int i=0; i < tab.linhas; i++)
+            {
+                for (int j = 0; j < tab.colunas; j++)
+                {
+                    if (mat[i,j] == true)
+                    {
+                        return true;
+                    }
+                }
+
+            }
+            return false;//RETORNA FALSE CASO PERCORRA TUDO E NÃO ENCONTRE 1 TRUE
+        }
+
+
+        //MÉTODO BOOL - TRUE SE A POSIÇAO PASSADA COMO PARÂMETRO ESTIVER NO VETOR DE MOVIMENTOS POSSÍVEIS
+        //OU SEJA, A POSIÇÃO ESCOLHIDA É PERMITIDA?
+        public bool podeMoverPara(Posicao pos)
+        {
+            return movimentosPossiveis()[pos.linha, pos.coluna];
+        }
+
+
         //MÉTODO ABSTRATO QUE SERÁ HERDADO POR CADA PEÇA ESPECÍFICA
         //SEU RETORNO É UMA MATRIZ BIDIMENSIONAL MARCANDO COMO
         //TRUE - TODAS POSIÇÕES POSSÍVEIS PARA MOVIMENTAR
