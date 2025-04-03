@@ -19,11 +19,7 @@ namespace projetoXadrezConsole
                     try//TRY PARA ERRO DURANTE AS JOGADAS - REPETE A JOGADA CASO HAJA ERRO
                     {
                         Console.Clear();//LIMPA O CONSOLE
-                        Tela.imprimirTabuleiro(partida.tab);
-                        Console.WriteLine();
-                        Console.WriteLine($"Turno: {partida.turno}");
-                        Console.WriteLine($"Aguardando jogada: {partida.jogadorAtual}");
-                        Console.WriteLine();
+                        Tela.imprimirPartida(partida);
 
                         Console.Write("Origem: ");
                         Posicao origem = Tela.lerPosicaoXadrez().toPosicao();

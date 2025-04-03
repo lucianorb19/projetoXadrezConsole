@@ -1,4 +1,5 @@
-﻿using System;
+﻿using projetoXadrezConsole.xadrez;
+using System;
 using tabuleiro;
 using xadrez;
 
@@ -6,6 +7,18 @@ namespace projetoXadrezConsole
 {
     class Tela
     {
+
+        public static void imprimirPartida(PartidaDeXadrez partida)
+        {
+            imprimirTabuleiro(partida.tab);
+            Console.WriteLine();
+            //imprimirPecasCapturadas(partida); PAROU AQUI AULA 227 - 1:28
+            Console.WriteLine();
+            Console.WriteLine($"Turno: {partida.turno}");
+            Console.WriteLine($"Aguardando jogada: {partida.jogadorAtual}");
+            Console.WriteLine();
+        }
+
         //MÉTODO QUE IMPRIME O TABULEIRO DE PEÇAS
         public static void imprimirTabuleiro(Tabuleiro tab)
         {
