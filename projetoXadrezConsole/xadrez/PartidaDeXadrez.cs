@@ -9,6 +9,7 @@ namespace projetoXadrezConsole.xadrez
         public Tabuleiro tab { get; private set; }
         private int turno; // A CADA JOGADA UM TURNO, 1,2,3....
         private Cor jogadorAtual;
+        public bool terminada { get; private set; } 
 
         //CONSTRUTORES
         public PartidaDeXadrez()
@@ -17,6 +18,7 @@ namespace projetoXadrezConsole.xadrez
             turno = 1;
             jogadorAtual = Cor.Branca;//REGRA - A PARTIDA SEMPRE INICIA PELO JOGADOR PEÇAS BRANCAS
             colocarPecas(); //ADICIONA AS PEÇAS INICIAIS DA PARTIDA
+            terminada = false;
         }
 
         //MÉTODO QUE INSERE AS PEÇAS NO TABULEIRO
