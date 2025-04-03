@@ -1,6 +1,6 @@
 ﻿namespace tabuleiro
 {
-    class Peca
+    abstract class Peca
     {
         public Posicao posicao { get; set; }
         public Cor cor { get; protected set; }
@@ -26,6 +26,13 @@
         {
             this.qteMovimentos++;
         }
+
+        //MÉTODO ABSTRATO QUE SERÁ HERDADO POR CADA PEÇA ESPECÍFICA
+        //SEU RETORNO É UMA MATRIZ BIDIMENSIONAL MARCANDO COMO
+        //TRUE - TODAS POSIÇÕES POSSÍVEIS PARA MOVIMENTAR
+        //FALSE - TODAS POSIÇÕES INDISPONÍVEIS
+        public abstract bool[,] movimentosPossiveis();
+
 
 
     }
