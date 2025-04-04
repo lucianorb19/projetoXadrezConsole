@@ -2,7 +2,7 @@
 using tabuleiro;
 using xadrez;
 
-namespace projetoXadrezConsole.xadrez
+namespace xadrez
 {
     class PartidaDeXadrez
     {
@@ -21,11 +21,13 @@ namespace projetoXadrezConsole.xadrez
             tab = new Tabuleiro(8, 8);
             turno = 1;
             jogadorAtual = Cor.Branca;//REGRA - A PARTIDA SEMPRE INICIA PELO JOGADOR PEÇAS BRANCAS
-            colocarPecas(); //ADICIONA AS PEÇAS INICIAIS DA PARTIDA
             terminada = false;
             xeque = false;
             pecas = new HashSet<Peca>();
             capturadas = new HashSet<Peca>();
+            colocarPecas(); //ADICIONA AS PEÇAS INICIAIS DA PARTIDA
+                            //COLOCADO NO CONSTRUTOR APÓS A INICIALIZAÇÃO DOS CONJUNTOS pecas E capturadas
+                            //SE NÃO GERA REFERÊNCIA null
         }
 
         //DEMAIS MÉTODOS
@@ -147,7 +149,7 @@ namespace projetoXadrezConsole.xadrez
                 throw new TabuleiroException("Voce não pode se colocar em xeque!");
             }
 
-            //SE O JOGADOR ADVERSÁRIO ESTÁ EM XEQUE
+            //SE O JOGADOR ADVERSÁRIO ESTÁ EM XEQUE - NA PRÓXIMA ITERAÇÃO DO WHILE ELE APARECERÁ COMO "XEQUE"
             if (estaEmXeque(adversaria(jogadorAtual)))
             {
                 xeque = true;

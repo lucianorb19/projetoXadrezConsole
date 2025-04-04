@@ -1,4 +1,4 @@
-﻿using projetoXadrezConsole.xadrez;
+﻿using xadrez;
 using System;
 using System.Data;
 using tabuleiro;

@@ -1,4 +1,4 @@
-﻿using projetoXadrezConsole.xadrez;
+﻿using xadrez;
 using System;
 using tabuleiro;
 using xadrez;
@@ -16,6 +16,11 @@ namespace projetoXadrezConsole
             Console.WriteLine();
             Console.WriteLine($"Turno: {partida.turno}");
             Console.WriteLine($"Aguardando jogada: {partida.jogadorAtual}");
+            if (partida.xeque)
+            {
+                Console.WriteLine("Xeque!");
+            }
+
             Console.WriteLine();
         }
 
