@@ -10,6 +10,7 @@ namespace projetoXadrezConsole.xadrez
         public int turno { get; private set; } // A CADA JOGADA UM TURNO, 1,2,3....
         public Cor jogadorAtual { get; private set; }
         public bool terminada { get; private set; }
+        public bool xeque { get; private set; }//ADVERSÁRIO ESTÁ EM XEQUE ?
         private HashSet<Peca> pecas;
         private HashSet<Peca> capturadas;
 
@@ -20,10 +21,11 @@ namespace projetoXadrezConsole.xadrez
             tab = new Tabuleiro(8, 8);
             turno = 1;
             jogadorAtual = Cor.Branca;//REGRA - A PARTIDA SEMPRE INICIA PELO JOGADOR PEÇAS BRANCAS
-            pecas = new HashSet<Peca>();
-            capturadas = new HashSet<Peca>();
             colocarPecas(); //ADICIONA AS PEÇAS INICIAIS DA PARTIDA
             terminada = false;
+            xeque = false;
+            pecas = new HashSet<Peca>();
+            capturadas = new HashSet<Peca>();
         }
 
         //DEMAIS MÉTODOS
@@ -82,11 +84,80 @@ namespace projetoXadrezConsole.xadrez
             return aux;
         }
 
+        //MÉTODO QUE DEFINE QUAL É A COR DAS PEÇAS ADVERSÁRIAS, DADA UMA COR
+        private Cor adversaria(Cor cor)
+        {
+            if(cor == Cor.Branca)
+            {
+                return Cor.Preta;
+            }
+            else
+            {
+                return Cor.Branca;
+            }
+        }
+
+        //MÉTODO QUE RETORNA UMA PEÇA REI EM JOGO, DADA UMA COR
+        private Peca rei(Cor cor)
+        {
+            foreach(Peca x in pecasEmJogo(cor))
+            {
+                if(x is Rei)
+                {
+                    return x;
+                }
+            }
+            return null;//PRA NÃO GERAR ERRO - SEGURANÇA - EM TESE, NUNCA VAI OCORRER
+        }
+
+        //MÉTODO QUE VERIFICA SE O REI DE UMA DADA COR ESTÁ EM XEQUE
+        public bool estaEmXeque(Cor cor)
+        {
+            Peca meuRei = rei(cor);//PEÇA REI DA COR DADA
+            //SEGURANÇA - EM TESE, NUNCA VAI OCORRER
+            if(meuRei == null)
+            {
+                throw new TabuleiroException($"Sem rei da cor {cor}");
+            }
+
+            foreach(Peca x in pecasEmJogo(adversaria(cor)))//PARA CADA PEÇA EM JOGO DA COR ADVERSÁRIA
+            {
+                //SALVO OS MOVIMENTOS POSSÍVEIS DESSA PEÇA
+                bool[,] mat = x.movimentosPossiveis();
+                //SE, DENTRE OS MOVIMENTOS POSSÍVEIS DESSA PEÇA, ESTIVER O REI EM ALGUMA DESSAS POSIÇÕES
+                if (mat[meuRei.posicao.linha, meuRei.posicao.coluna] == true)
+                {
+                    return true;
+                }
+            }
+
+            //SE CASO NÃO HOUVER O REI EM XEQUE, PARA NENHUMA PEÇA ADVERSÁRIA, false
+            return false;
+        }
+
         //MÉTODO QUE REALIZA A JOGADA MOVIMENTANDO A PEÇA E MUDANDO A COR DO JOGADOR ATUAL
         public void realizaJogada(Posicao origem, Posicao destino)
         {
-            executaMovimento(origem, destino);
-            turno++;
+            Peca pecaCapturada = executaMovimento(origem, destino);
+
+            //SE SUA JOGADA DEIXOU VC EM XEQUE, APÓS O MOVIMENTO, A JOGADA É DESFEITA
+            if (estaEmXeque(jogadorAtual))
+            {
+                desfazMovimento(origem, destino, pecaCapturada);
+                throw new TabuleiroException("Voce não pode se colocar em xeque!");
+            }
+
+            //SE O JOGADOR ADVERSÁRIO ESTÁ EM XEQUE
+            if (estaEmXeque(adversaria(jogadorAtual)))
+            {
+                xeque = true;
+            }
+            else
+            {
+                xeque = false;
+            }
+
+                turno++;
             mudaJogador();
         }
 
@@ -117,7 +188,7 @@ namespace projetoXadrezConsole.xadrez
         }
 
         //MÉTODO QUE MOVIMENTA A PEÇA NO TABULEIRO
-        public void executaMovimento(Posicao origem, Posicao destino)
+        public Peca executaMovimento(Posicao origem, Posicao destino)
         {
             Peca p = tab.retirarPeca(origem);//PEÇA SAI DA POSIÇÃO ORIGINAL DO TABULEIRO. SALVA EM p
             p.incrementarQtdMovimentos();
@@ -129,6 +200,21 @@ namespace projetoXadrezConsole.xadrez
             {
                 capturadas.Add(pecaCapturada);
             }
+            return pecaCapturada;
+        }
+
+        //MÉTODO QUE DESFAZ O MOVIMENTO DE UMA PEÇA
+        public void desfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
+        {
+            Peca p = tab.retirarPeca(destino);//PEÇA NO DESTINO É RETIRADA DO TABULEIRO E SALVA EM p
+            p.decrementarQtdMovimentos();
+
+            if(pecaCapturada != null)//SE HOUVE ALGUMA PEÇA CAPTURADA NESSE MOVIMENTO ILEGAL
+            {
+                tab.colocarPeca(pecaCapturada, destino);//RETORNO A PEÇA AO TABULEIRO
+                capturadas.Remove(pecaCapturada);//TIRO DA LISTA DE CAPTURADAS
+            }
+            tab.colocarPeca(p, origem);//COLOCO A PEÇA QUE SE MOVIMENTOU DE VOLTA NA ORIGEM
         }
 
         //MÉTODO QUE MUDA A COR DO JOGADOR ATUAL

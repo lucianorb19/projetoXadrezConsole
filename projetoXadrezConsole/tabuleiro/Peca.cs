@@ -27,6 +27,11 @@
             this.qteMovimentos++;
         }
 
+        public void decrementarQtdMovimentos()
+        {
+            this.qteMovimentos--;
+        }
+
         //MÉTODO BOOL - AVALIA SE NA MATRIZ DE MOVIMENTOS POSSÍVEIS HÁ AO MENOS UMA POSIÇÃO TRUE
         //OU SEJA, HÁ ALGUMA MOVIMENTO POSSÍVEL PARA AQUELA PEÇA?
         public bool existeMovimentosPossiveis()
