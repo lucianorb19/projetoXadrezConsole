@@ -34,19 +34,27 @@ namespace xadrez
         //MÉTODO QUE INSERE AS PEÇAS INICIAIS NO TABULEIRO
         private void colocarPecas()
         {
+            /*
             colocarNovaPeca('c', 1, new Torre(tab, Cor.Branca));
             colocarNovaPeca('c', 2, new Torre(tab, Cor.Branca));
             colocarNovaPeca('d', 2, new Torre(tab, Cor.Branca));
             colocarNovaPeca('e', 2, new Torre(tab, Cor.Branca));
             colocarNovaPeca('e', 1, new Torre(tab, Cor.Branca));
             colocarNovaPeca('d', 1, new Rei(tab, Cor.Branca));
-
             colocarNovaPeca('c', 8, new Torre(tab, Cor.Preta));
             colocarNovaPeca('c', 7, new Torre(tab, Cor.Preta));
             colocarNovaPeca('d', 7, new Torre(tab, Cor.Preta));
             colocarNovaPeca('e', 8, new Torre(tab, Cor.Preta));
             colocarNovaPeca('e', 7, new Torre(tab, Cor.Preta));
             colocarNovaPeca('d', 8, new Rei(tab, Cor.Preta));
+            */
+
+            colocarNovaPeca('c', 1, new Torre(tab, Cor.Branca));
+            colocarNovaPeca('d', 1, new Rei(tab, Cor.Branca));
+            colocarNovaPeca('h', 7, new Torre(tab, Cor.Branca));
+            colocarNovaPeca('a', 8, new Rei(tab, Cor.Preta));
+            colocarNovaPeca('b', 8, new Torre(tab, Cor.Preta));
+
         }
         
         //MÉTODO QUE ADICIONA UMA PEÇA NUMA POSIÇÃO DO TABULEIRO
@@ -137,10 +145,47 @@ namespace xadrez
             return false;
         }
 
+        //MÉTODO QUE VERIFICA SE O REI DE UMA DADA COR ESTÁ EM XEQUE MATE
+        public bool testeXequeMate(Cor cor)
+        {
+            //SE NÃO ESTIVER EM XEQUE, É IMPOSSÍVEL ESTAR EM XEQUE MATE
+            if (!estaEmXeque(cor))
+            {
+                return false;
+            }
+            //VERIFICAR SE É POSSÍVEL SAIR DO XEQUE COLOCANDO ALGUMA PEÇA NO CAMINHO
+            foreach(Peca x in pecasEmJogo(cor))
+            {
+                bool[,] mat = x.movimentosPossiveis();//MOVIMENTOS POSSÍVEIS DA PEÇA
+                for(int i = 0; i < tab.linhas; i++)
+                {
+                    for(int j = 0; j < tab.colunas; j++)
+                    {
+                        if (mat[i, j])//PERCORRENDO TODAS SUAS POSIÇÕES POSSÍVEIS
+                        {
+                            Posicao origem = x.posicao;
+                            Posicao destino = new Posicao(i, j);//AUXILIAR - PRA ONDE A PEÇA PRECISA IR PRA SALVAR O REI
+
+                            Peca pecaCapturada = executaMovimento(origem, destino);
+                            bool testeXeque = estaEmXeque(cor);
+                            desfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false;//CASO ALGUM MOVIMENTO POSSÍVEL CONSIGA TIRAR DO XEQUE, NÃO É XEQUE MATE
+                            }
+                        }
+                    }
+                }
+            }
+            return true;//SE MESMO COM QUALQUER MOVIMENTO, AINDA CONTINUE EM XEQUE, XEQUE MATE!
+        }
+
         //MÉTODO QUE REALIZA A JOGADA MOVIMENTANDO A PEÇA E MUDANDO A COR DO JOGADOR ATUAL
         public void realizaJogada(Posicao origem, Posicao destino)
         {
-            Peca pecaCapturada = executaMovimento(origem, destino);
+            Peca pecaCapturada = executaMovimento(origem, destino);//EXECUÇÃO DA JOGADA
+
+            //APÓS A JOGADA, AVALIAR SE O JOGADOR ADVERSÁRIO ESTÁ EM XEQUE OU XEQUE MATE
 
             //SE SUA JOGADA DEIXOU VC EM XEQUE, APÓS O MOVIMENTO, A JOGADA É DESFEITA
             if (estaEmXeque(jogadorAtual))
@@ -159,8 +204,18 @@ namespace xadrez
                 xeque = false;
             }
 
+            //SE O JOGADOR ADVERSÁRIO ESTÁ EM XEQUE MATE - ACABA LAÇO WHILE - FIM DO JOGO
+            if (testeXequeMate(adversaria(jogadorAtual)))
+            {
+                terminada = true;
+            }
+            else//SE NÃO HÁ XEQUE MATE, JOGO CONTINUA NORMALMENTE
+            {
                 turno++;
-            mudaJogador();
+                mudaJogador();
+            }
+
+                
         }
 
         //MÉTODO QUE VALIDA A POSIÇÃO DA PEÇA DE ORIGEM ESCOLHIDA

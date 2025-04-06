@@ -44,6 +44,9 @@ namespace projetoXadrezConsole
                         Console.ReadLine();//ESPERA O USUÁRIO DIGITAR ALGO PARA CONTINUAR O WHILE - REPETIR O TURNO
                     }
 
+                    Console.Clear();//LIMPA O CONSOLE
+                    Tela.imprimirPartida(partida);
+
                 }
             }
             catch (TabuleiroException e)
