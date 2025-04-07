@@ -54,7 +54,7 @@
 
         //MÉTODO BOOL - TRUE SE A POSIÇAO PASSADA COMO PARÂMETRO ESTIVER NO VETOR DE MOVIMENTOS POSSÍVEIS
         //OU SEJA, A POSIÇÃO ESCOLHIDA É PERMITIDA?
-        public bool podeMoverPara(Posicao pos)
+        public bool movimentoPossivel(Posicao pos)
         {
             return movimentosPossiveis()[pos.linha, pos.coluna];
         }

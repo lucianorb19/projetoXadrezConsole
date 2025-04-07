@@ -238,7 +238,7 @@ namespace xadrez
         //MÉTODO QUE VALIDA A POSIÇÃO DE DESTINO, DADA SUA ORIGEM E SEUS POSSÍVEIS MOVIMENTOS
         public void validarPosicaoDeDestino(Posicao origem, Posicao destino)
         {
-            if (!tab.peca(origem).podeMoverPara(destino))//SE NÃO PUDER SE MOVER PARA O DESTINO
+            if (!tab.peca(origem).movimentoPossivel(destino))//SE NÃO PUDER SE MOVER PARA O DESTINO
             {
                 throw new TabuleiroException("Posição de destino inválida!");
             }

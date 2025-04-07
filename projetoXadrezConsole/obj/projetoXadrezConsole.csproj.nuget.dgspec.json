@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Luciano\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\projetoXadrezConsole.csproj": {}
+    "C:\\Users\\CREAS\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\projetoXadrezConsole.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Luciano\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\projetoXadrezConsole.csproj": {
+    "C:\\Users\\CREAS\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\projetoXadrezConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Luciano\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\projetoXadrezConsole.csproj",
+        "projectUniqueName": "C:\\Users\\CREAS\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\projetoXadrezConsole.csproj",
         "projectName": "projetoXadrezConsole",
-        "projectPath": "C:\\Users\\Luciano\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\projetoXadrezConsole.csproj",
-        "packagesPath": "C:\\Users\\Luciano\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Luciano\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\obj\\",
+        "projectPath": "C:\\Users\\CREAS\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\projetoXadrezConsole.csproj",
+        "packagesPath": "C:\\Users\\CREAS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CREAS\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Luciano\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\CREAS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
