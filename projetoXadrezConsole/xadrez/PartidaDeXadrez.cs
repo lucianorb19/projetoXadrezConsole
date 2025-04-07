@@ -69,7 +69,8 @@ namespace xadrez
             colocarNovaPeca('b',1, new Cavalo(tab, Cor.Branca));
             colocarNovaPeca('c',1, new Bispo(tab, Cor.Branca));
             colocarNovaPeca('d',1, new Dama(tab, Cor.Branca));
-            colocarNovaPeca('e',1, new Rei(tab, Cor.Branca));
+            //CONSTRUTOR DE REI PRECISA DA PARTIDA COMO ARGUMENTO
+            colocarNovaPeca('e',1, new Rei(tab, Cor.Branca, this));
             colocarNovaPeca('f',1, new Bispo(tab, Cor.Branca));
             colocarNovaPeca('g',1, new Cavalo(tab, Cor.Branca));
             colocarNovaPeca('h',1, new Torre(tab, Cor.Branca));
@@ -86,7 +87,8 @@ namespace xadrez
             colocarNovaPeca('b', 8, new Cavalo(tab, Cor.Preta));
             colocarNovaPeca('c', 8, new Bispo(tab, Cor.Preta));
             colocarNovaPeca('d', 8, new Dama(tab, Cor.Preta));
-            colocarNovaPeca('e', 8, new Rei(tab, Cor.Preta));
+            //CONSTRUTOR DE REI PRECISA DA PARTIDA COMO ARGUMENTO
+            colocarNovaPeca('e', 8, new Rei(tab, Cor.Preta, this));
             colocarNovaPeca('f', 8, new Bispo(tab, Cor.Preta));
             colocarNovaPeca('g', 8, new Cavalo(tab, Cor.Preta));
             colocarNovaPeca('h', 8, new Torre(tab, Cor.Preta));
@@ -293,6 +295,31 @@ namespace xadrez
             {
                 capturadas.Add(pecaCapturada);
             }
+
+            //#JOGADA ESPECIAL - ROQUE PEQUENO
+            if(p is Rei && destino.coluna == origem.coluna + 2)//SE ESTIVER MOVENDO O REI DUAS CASAS PARA DIREITA
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna + 3);//IDENTIFICADO ONDE ESTÁ A TORRE PARA ROQUE
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna + 1);//ONDE A TORRE DEVE FICAR APÓS O ROQUE
+                //FAZENDO O MOVIMENTO DA TORRE
+                Peca torre = tab.retirarPeca(origemTorre);
+                torre.incrementarQtdMovimentos();
+                tab.colocarPeca(torre, destinoTorre);
+            }
+
+            //#JOGADA ESPECIAL - ROQUE GRANDE
+            if (p is Rei && destino.coluna == origem.coluna - 2)//SE ESTIVER MOVENDO O REI DUAS CASAS PARA ESQUERDA
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna - 4);//IDENTIFICADO ONDE ESTÁ A TORRE PARA ROQUE
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna -1);//ONDE A TORRE DEVE FICAR APÓS O ROQUE
+                //FAZENDO O MOVIMENTO DA TORRE
+                Peca torre = tab.retirarPeca(origemTorre);
+                torre.incrementarQtdMovimentos();
+                tab.colocarPeca(torre, destinoTorre);
+            }
+
+
+
             return pecaCapturada;
         }
 
@@ -308,6 +335,32 @@ namespace xadrez
                 capturadas.Remove(pecaCapturada);//TIRO DA LISTA DE CAPTURADAS
             }
             tab.colocarPeca(p, origem);//COLOCO A PEÇA QUE SE MOVIMENTOU DE VOLTA NA ORIGEM
+
+
+            //DESFAZER O ROQUE PEQUENO
+            //#JOGADA ESPECIAL - ROQUE PEQUENO
+            if (p is Rei && destino.coluna == origem.coluna + 2)//SE ESTIVER MOVENDO O REI DUAS CASAS PARA DIREITA
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna + 3);//IDENTIFICADO ONDE ESTÁ A TORRE PARA ROQUE
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna + 1);//ONDE A TORRE DEVE FICAR APÓS O ROQUE
+                //DESFAZENDO O MOVIMENTO DA TORRE
+                Peca torre = tab.retirarPeca(destinoTorre);
+                torre.decrementarQtdMovimentos();
+                tab.colocarPeca(torre, origemTorre);
+            }
+
+            //DESFAZER O ROQUE GRANDE
+            //#JOGADA ESPECIAL - ROQUE PEQUENO
+            if (p is Rei && destino.coluna == origem.coluna - 2)//SE ESTIVER MOVENDO O REI DUAS CASAS PARA ESQUERDA
+            {
+                Posicao origemTorre = new Posicao(origem.linha, origem.coluna - 4);//IDENTIFICADO ONDE ESTÁ A TORRE PARA ROQUE
+                Posicao destinoTorre = new Posicao(origem.linha, origem.coluna - 1);//ONDE A TORRE DEVE FICAR APÓS O ROQUE
+                //FAZENDO O MOVIMENTO DA TORRE
+                Peca torre = tab.retirarPeca(destinoTorre);
+                torre.decrementarQtdMovimentos();
+                tab.colocarPeca(torre, origemTorre);
+            }
+
         }
 
         //MÉTODO QUE MUDA A COR DO JOGADOR ATUAL
