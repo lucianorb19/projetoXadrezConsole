@@ -1,6 +1,7 @@
 ﻿using xadrez;
 using System;
 using tabuleiro;
+using System.Collections.Generic;
 
 namespace projetoXadrezConsole
 {
@@ -123,11 +124,77 @@ namespace projetoXadrezConsole
         //MÉTODO QUE RECEBE A POSIÇÃO DA PEÇA DO USUÁRIO - PARA INICIAR A MOVIMENTAÇÃO
         public static PosicaoXadrez lerPosicaoXadrez()
         {
+            //ENTRADA DO USUÁRIO PRECISA SER
+            //DE TAMANHO 2
+            //FORMATO LETRA MINÚSCULA+NÚMERO SENDO
+            //LETRA MINÚSCULA E DE a A H
+            //NÚMERO INTEIRO DE 1 A 8
+            //ENTRADA NÃO PODE SER VAZIA
+            //SEM ESPAÇOS ANTES E DEPOIS
             string s = Console.ReadLine();
+            
+            //while (!(validaEntrada(s)))
+            //{
+
+            //}
+
+            
             char coluna = s[0];
             int linha = int.Parse(s[1] + "");//------MACETE - FORÇAR A ENTRADA A SER UM STRING ANTES DE CONVERTER PARA INT
             return new PosicaoXadrez(coluna, linha);
         }
+        
+        /*
+        public bool validaEntrada(string entrada)
+        {
+
+            entrada = entrada.Trim();//RETIRA ESPAÇOS ANTES E DEPOIS
+            char coluna = entrada[0];
+            char linha = entrada[1];
+
+            if (entrada.Length == 2 && //TAMANHO 2
+                Char.IsLower(coluna)&& //COLUNA É LETRA MINÚSCULA
+                Char.IsNumber(linha)) // LINHA É INTEIRO
+            {
+
+            }
+            /*
+            //COLUNAS E LINHAS POSSÍVEIS EM DUAS LISTAS
+            List<char> colunas = new List<char>();
+            colunas.Add('a'); colunas.Add('b'); colunas.Add('c'); colunas.Add('d');
+            colunas.Add('e'); colunas.Add('f'); colunas.Add('g'); colunas.Add('h');
+            List<int> linhas = new List<int>();
+            linhas.Add(1); linhas.Add(2); linhas.Add(3); linhas.Add(4);
+            linhas.Add(5); linhas.Add(6); linhas.Add(7); linhas.Add(8);
+
+            entrada = entrada.Trim();//RETIRA ESPAÇOS ANTES E DEPOIS
+            //TORNAR COLUNA 
+            char coluna = entrada[0];//COLUNA
+            int linha = entrada[1];//LINHA
+
+            
+
+            if (entrada.Length == 2)//SE A ENTRADA FOR TAMANHO 2
+            {
+                foreach(char c in colunas)
+                {
+                    if(c == coluna)
+                    {
+                        foreach(int l in linhas)
+                        {
+                            if(l == linha)
+                            {
+                                //A LINHA E COLUNAS INFORMADAS SÃO VÁLIDAS
+                            }
+                        }
+                    }
+                    
+                   
+                }
+            }
+            */
+        }
+        */
 
         //MÉTODO QUE MOSTRA AS PEÇAS EM CORES DIFERENTES NO MOMENTO DA IMPRESSÃO
         public static void imprimirPeca(Peca peca)
@@ -154,6 +221,8 @@ namespace projetoXadrezConsole
             }
             
         }
+
+        
 
 
 
