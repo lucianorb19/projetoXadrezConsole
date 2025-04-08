@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{D071E57A-BCE6-4EEB-8052-F8A39B9C5CBF}|projetoXadrezConsole\\projetoXadrezConsole.csproj|solutionrelative:projetoxadrezconsole\\tela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D071E57A-BCE6-4EEB-8052-F8A39B9C5CBF}|projetoXadrezConsole\\projetoXadrezConsole.csproj|c:\\users\\creas\\desktop\\projetoxadrezconsole\\projetoxadrezconsole\\xadrez\\partidadexadrez.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D071E57A-BCE6-4EEB-8052-F8A39B9C5CBF}|projetoXadrezConsole\\projetoXadrezConsole.csproj|solutionrelative:projetoxadrezconsole\\xadrez\\partidadexadrez.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D071E57A-BCE6-4EEB-8052-F8A39B9C5CBF}|projetoXadrezConsole\\projetoXadrezConsole.csproj|c:\\users\\creas\\desktop\\projetoxadrezconsole\\projetoxadrezconsole\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D071E57A-BCE6-4EEB-8052-F8A39B9C5CBF}|projetoXadrezConsole\\projetoXadrezConsole.csproj|solutionrelative:projetoxadrezconsole\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D071E57A-BCE6-4EEB-8052-F8A39B9C5CBF}|projetoXadrezConsole\\projetoXadrezConsole.csproj|c:\\users\\creas\\desktop\\projetoxadrezconsole\\projetoxadrezconsole\\xadrez\\partidadexadrez.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D071E57A-BCE6-4EEB-8052-F8A39B9C5CBF}|projetoXadrezConsole\\projetoXadrezConsole.csproj|solutionrelative:projetoxadrezconsole\\xadrez\\partidadexadrez.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,13 +26,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\CREAS\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\Program.cs",
               "RelativeDocumentMoniker": "projetoXadrezConsole\\Program.cs",
               "ToolTip": "C:\\Users\\CREAS\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\Program.cs",
               "RelativeToolTip": "projetoXadrezConsole\\Program.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAA1wBwAAABPAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwBsAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-01T14:02:46.816Z",
               "IsPinned": true,
@@ -46,14 +46,14 @@
               "RelativeDocumentMoniker": "projetoXadrezConsole\\Tela.cs",
               "ToolTip": "C:\\Users\\CREAS\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\Tela.cs",
               "RelativeToolTip": "projetoXadrezConsole\\Tela.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAUwKkAAABEAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAwwH0AAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-08T13:22:48.375Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "PartidaDeXadrez.cs",
               "DocumentMoniker": "C:\\Users\\CREAS\\Desktop\\projetoXadrezConsole\\projetoXadrezConsole\\xadrez\\PartidaDeXadrez.cs",
               "RelativeDocumentMoniker": "projetoXadrezConsole\\xadrez\\PartidaDeXadrez.cs",
@@ -61,8 +61,7 @@
               "RelativeToolTip": "projetoXadrezConsole\\xadrez\\PartidaDeXadrez.cs",
               "ViewState": "AgIAAMUAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T14:01:59.043Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T14:01:59.043Z"
             }
           ]
         }

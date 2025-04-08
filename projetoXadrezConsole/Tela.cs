@@ -2,6 +2,7 @@
 using System;
 using tabuleiro;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace projetoXadrezConsole
 {
@@ -124,41 +125,21 @@ namespace projetoXadrezConsole
         //MÉTODO QUE RECEBE A POSIÇÃO DA PEÇA DO USUÁRIO - PARA INICIAR A MOVIMENTAÇÃO
         public static PosicaoXadrez lerPosicaoXadrez()
         {
-            //ENTRADA DO USUÁRIO PRECISA SER
-            //DE TAMANHO 2
-            //FORMATO LETRA MINÚSCULA+NÚMERO SENDO
-            //LETRA MINÚSCULA E DE a A H
-            //NÚMERO INTEIRO DE 1 A 8
-            //ENTRADA NÃO PODE SER VAZIA
-            //SEM ESPAÇOS ANTES E DEPOIS
-            string s = Console.ReadLine();
-            
-            //while (!(validaEntrada(s)))
-            //{
-
-            //}
-
-            
-            char coluna = s[0];
-            int linha = int.Parse(s[1] + "");//------MACETE - FORÇAR A ENTRADA A SER UM STRING ANTES DE CONVERTER PARA INT
+            string s = processaEntrada();//ENTRADA É PROCESSADA PARA Q SEJA VÁLIDA
+            char coluna = Char.ToLower(s[0]);//ACEITA COLUNA TANTO MAIÚSCULA QUANTO MINÚSCULA
+            int linha = s[1]-'0';//-----MACETE - CONVERTER A LINHA PARA INTEIRO - '2' VIRA 2
             return new PosicaoXadrez(coluna, linha);
         }
-        
-        /*
-        public bool validaEntrada(string entrada)
+
+        //MÉTODO QU PROCESSA A ENTRADA DA POSIÇÃO PELO USUÁRIO - RETORNA A ENTRADA SE VÁLIDA, SE NÃO, REPETE
+        //ENTRADA DO USUÁRIO PRECISA SER DE TAMANHO 2
+        //FORMATO LETRA+NÚMERO SENDO
+        //LETRA DE a A h (MAIÚSCULO OU MINÚSCULO)
+        //NÚMERO INTEIRO DE 1 A 8
+        //ENTRADA NÃO PODE SER VAZIA
+        //SEM ESPAÇOS ANTES E DEPOIS
+        private static string processaEntrada()
         {
-
-            entrada = entrada.Trim();//RETIRA ESPAÇOS ANTES E DEPOIS
-            char coluna = entrada[0];
-            char linha = entrada[1];
-
-            if (entrada.Length == 2 && //TAMANHO 2
-                Char.IsLower(coluna)&& //COLUNA É LETRA MINÚSCULA
-                Char.IsNumber(linha)) // LINHA É INTEIRO
-            {
-
-            }
-            /*
             //COLUNAS E LINHAS POSSÍVEIS EM DUAS LISTAS
             List<char> colunas = new List<char>();
             colunas.Add('a'); colunas.Add('b'); colunas.Add('c'); colunas.Add('d');
@@ -167,34 +148,46 @@ namespace projetoXadrezConsole
             linhas.Add(1); linhas.Add(2); linhas.Add(3); linhas.Add(4);
             linhas.Add(5); linhas.Add(6); linhas.Add(7); linhas.Add(8);
 
-            entrada = entrada.Trim();//RETIRA ESPAÇOS ANTES E DEPOIS
-            //TORNAR COLUNA 
-            char coluna = entrada[0];//COLUNA
-            int linha = entrada[1];//LINHA
-
-            
-
-            if (entrada.Length == 2)//SE A ENTRADA FOR TAMANHO 2
+            bool valida = false;
+            while(valida == false)
             {
-                foreach(char c in colunas)
+                string entrada = Console.ReadLine();
+
+                if (entrada.Length == 2 && //TAMANHO 2
+                !(String.IsNullOrEmpty(entrada)) && //NÃO ESTÁ VAZIA OU NULL
+                Char.IsLetter(entrada[0]) && //COLUNA É LETRA
+                Char.IsNumber(entrada[1])) // LINHA PODE SER CONVERTIDO PARA INTEIRO
                 {
-                    if(c == coluna)
+                    entrada = entrada.Trim();//RETIRA ESPAÇOS ANTES E DEPOIS
+                    char coluna = Char.ToLower(entrada[0]);//SE FOR MAIÚSCULO, É TRANSFORMADO EM MINÚSCULO
+                    entrada = $"{coluna}" + $"{entrada[1]}";
+
+                    char linha = entrada[1];//AUXILIARES PARA ESCREVER MENOS
+                    int int_linha = linha - '0';//-----MACETE - CONVERTER A LINHA PARA INTEIRO
+
+                    foreach (char c in colunas)
                     {
-                        foreach(int l in linhas)
+                        if (c == coluna)//HAVENDO UMA COLUNA VÁLIDA
                         {
-                            if(l == linha)
+                            foreach (int l in linhas)
                             {
-                                //A LINHA E COLUNAS INFORMADAS SÃO VÁLIDAS
+                                if (l == int_linha)//HAVENDO UMA LINHA VÁLIDA
+                                {
+                                    valida = true;//CONDIÇÃO PARA SAIR DO LAÇO DE ENTRADA ERRADA
+                                    return entrada; //RETORNO A ENTRADA PROCESSADA
+                                }
                             }
                         }
                     }
-                    
-                   
                 }
-            }
-            */
+                else//CASO NÃO SEJA ENTRADA VÁLIDA - TENTAR NOVAMENTE
+                {
+                    Console.Write("Entrada inválida. Tente novamente\n--> ");
+                }
+            }//APÓS ENTRADA SER VÁLIDA - (EM TEORIA, NEM CHEGA AQUI NUNCA, MAS SE NÃO HOUVER ESSE RETURN, INDICA ERRO)
+            return null;
         }
-        */
+
 
         //MÉTODO QUE MOSTRA AS PEÇAS EM CORES DIFERENTES NO MOMENTO DA IMPRESSÃO
         public static void imprimirPeca(Peca peca)
