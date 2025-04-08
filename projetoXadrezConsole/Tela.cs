@@ -30,6 +30,7 @@ namespace projetoXadrezConsole
                 Console.WriteLine("Xeque-mate!");
                 Console.WriteLine($"Vencedor: {partida.jogadorAtual}");
                 Console.WriteLine();
+                Console.ReadLine();
             }
             Console.WriteLine();
         }
@@ -63,8 +64,11 @@ namespace projetoXadrezConsole
         //MÉTODO QUE IMPRIME O TABULEIRO DE PEÇAS
         public static void imprimirTabuleiro(Tabuleiro tab)
         {
+            Console.WriteLine("====================================");
+            Console.WriteLine();
             for(int i = 0; i < tab.linhas; i++)
             {
+                Console.Write("        ");
                 Console.Write(8-i + " ");//MOSTRA O NÚMERO DA LINHA
                 for(int j = 0; j < tab.colunas; j++)
                 {
@@ -72,7 +76,12 @@ namespace projetoXadrezConsole
                 }
                 Console.WriteLine();
             }
+            
+            Console.Write("        ");
             Console.WriteLine("  a b c d e f g h");
+            Console.WriteLine();
+            Console.WriteLine("====================================");
+
         }
 
         //MÉTODO QUE IMPRIME O TABULEIRO DE PEÇAS E MOVIMENTOS POSSÍVEIS
@@ -82,8 +91,11 @@ namespace projetoXadrezConsole
             ConsoleColor fundoOriginal = Console.BackgroundColor;
             ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
 
+            Console.WriteLine("====================================");
+            Console.WriteLine();
             for (int i = 0; i < tab.linhas; i++)
             {
+                Console.Write("        ");
                 Console.Write(8 - i + " ");//MOSTRA O NÚMERO DA LINHA
                 for (int j = 0; j < tab.colunas; j++)
                 {
@@ -100,7 +112,11 @@ namespace projetoXadrezConsole
                 }
                 Console.WriteLine();
             }
+            
+            Console.Write("        ");
             Console.WriteLine("  a b c d e f g h");
+            Console.WriteLine();
+            Console.WriteLine("====================================");
             Console.BackgroundColor = fundoOriginal;
         }
 
