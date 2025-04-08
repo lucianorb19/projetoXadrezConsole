@@ -2,12 +2,12 @@
 {
     abstract class Peca
     {
+        //ATRIBUTOS
         public Posicao posicao { get; set; }
         public Cor cor { get; protected set; }
         public int qteMovimentos { get; protected set; }
         public Tabuleiro tab { get; protected set; }
         //protected - SOMENTE A CLASSE E SUAS SUBCLASSES PODEM MODIFICAR O VALOR DO ATRIBUTO
-
 
         //CONSTRUTORES
         public Peca()
@@ -51,7 +51,6 @@
             return false;//RETORNA FALSE CASO PERCORRA TUDO E NÃO ENCONTRE 1 TRUE
         }
 
-
         //MÉTODO BOOL - TRUE SE A POSIÇAO PASSADA COMO PARÂMETRO ESTIVER NO VETOR DE MOVIMENTOS POSSÍVEIS
         //OU SEJA, A POSIÇÃO ESCOLHIDA É PERMITIDA?
         public bool movimentoPossivel(Posicao pos)
@@ -59,12 +58,13 @@
             return movimentosPossiveis()[pos.linha, pos.coluna];
         }
 
-
         //MÉTODO ABSTRATO QUE SERÁ HERDADO POR CADA PEÇA ESPECÍFICA
         //SEU RETORNO É UMA MATRIZ BIDIMENSIONAL MARCANDO COMO
         //TRUE - TODAS POSIÇÕES POSSÍVEIS PARA MOVIMENTAR
         //FALSE - TODAS POSIÇÕES INDISPONÍVEIS
         public abstract bool[,] movimentosPossiveis();
+
+
 
 
 

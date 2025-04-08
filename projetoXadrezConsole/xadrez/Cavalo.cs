@@ -13,6 +13,8 @@ namespace xadrez
             return $"C";
         }
 
+        //MÉTODO QUE VERIFICA SE UMA DADA POSIÇÃO É PASSÍVEL DE RECEBER UMA PEÇA
+        //SEJA PORQUE ESTÁ VAZIA OU PORQUE A PEÇA VAI SER COMIDA
         private bool podeMover(Posicao pos)
         {
             Peca p = tab.peca(pos);//PEÇA p RECEBE A PEÇA NA POSIÇÃO pos DO TABULEIRO
@@ -35,6 +37,8 @@ namespace xadrez
             {
                 mat[pos.linha, pos.coluna] = true;//ESSA POSIÇÃO É MARCADA COMO TRUE NA MATRIZ DE BOOL
             }
+
+            //POSSÍVEIS MOVIMENTOS DO CAVALO - EM L
 
             pos.definirValores(posicao.linha - 2, posicao.coluna - 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
@@ -78,10 +82,11 @@ namespace xadrez
                 mat[pos.linha, pos.coluna] = true;
             }
 
-
             return mat;
 
         }
+
+
 
 
 

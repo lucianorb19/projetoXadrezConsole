@@ -1,4 +1,5 @@
-﻿using tabuleiro;
+﻿using System.Runtime.Intrinsics.X86;
+using tabuleiro;
 
 namespace xadrez
 {
@@ -16,6 +17,8 @@ namespace xadrez
             return $"T";
         }
 
+        //MÉTODO QUE VERIFICA SE UMA DADA POSIÇÃO É PASSÍVEL DE RECEBER UMA PEÇA
+        //SEJA PORQUE ESTÁ VAZIA OU PORQUE A PEÇA VAI SER COMIDA
         private bool podeMover(Posicao pos)
         {
             Peca p = tab.peca(pos);//PEÇA p RECEBE A PEÇA NA POSIÇÃO pos DO TABULEIRO
@@ -23,6 +26,7 @@ namespace xadrez
             //RETORNA TRUE SE NÃO HOUVER PEÇA NA POSIÇÃO OU SE FOR UMA PEÇA ADVERSÁRIA
         }
 
+        //MECÂNICA DE MOVIMENTOS DA TORRE
         public override bool[,] movimentosPossiveis()
         {
             bool[,] mat = new bool[tab.linhas, tab.colunas];//MATRIZ AUXILIAR COM O MESMO TAMANHO DO TABULEIRO

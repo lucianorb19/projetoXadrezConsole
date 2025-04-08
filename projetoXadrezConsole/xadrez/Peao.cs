@@ -7,7 +7,7 @@ namespace xadrez
         //ATRIBUTOS
         private PartidaDeXadrez partida;
 
-        //CONSTRUTORES
+        //CONSTRUTORES - CONSTRUTOR DA BASE + PARTIDA (PARA USAR NO ROQUE)
         public Peao(Tabuleiro tab, Cor cor, PartidaDeXadrez partida) : base(tab, cor)
         {
             this.partida = partida;
@@ -32,6 +32,7 @@ namespace xadrez
             return (tab.peca(pos) == null);
         }
 
+        //MECÂNICA DE MOVIMENTOS DO PEÃO
         public override bool[,] movimentosPossiveis()
         {
             bool[,] mat = new bool[tab.linhas, tab.colunas];
@@ -71,7 +72,7 @@ namespace xadrez
 
                 //#JOGADA ESPECIAL - EN PASSANT - ESSE PEÃO COME OUTRO QUE ESTÁ VULNERÁVEL AO EN PASSANT
                 //PEÃO BRANCO COME
-                if (posicao.linha == 3)//
+                if (posicao.linha == 3)//PEÃO BRANCO SÓ REALIZA EN PASSANT QUANDO ESTÁ NA LINHA 3
                 {
                     //PEÃO BRANCO COME PEÃO À ESQUERDA
                     Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);//POSICÃO A ESQUERDA DESSE PEÃO
@@ -124,7 +125,7 @@ namespace xadrez
 
                 //#JOGADA ESPECIAL - EN PASSANT - ESSE PEÃO COME OUTRO QUE ESTÁ VULNERÁVEL AO EN PASSANT
                 //PEÃO PRETO COME
-                if (posicao.linha == 4)//
+                if (posicao.linha == 4) //PEÃO PRETO SÓ REALIZA EN PASSANT QUANDO ESTÁ NA LINHA 4
                 {
                     //PEÃO PRETO COME PEÃO À ESQUERDA
                     Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);//POSICÃO A ESQUERDA DESSE PEÃO

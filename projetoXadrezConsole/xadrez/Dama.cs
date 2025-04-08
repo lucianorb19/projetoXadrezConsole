@@ -13,6 +13,8 @@ namespace xadrez
             return $"D";
         }
 
+        //MÉTODO QUE VERIFICA SE UMA DADA POSIÇÃO É PASSÍVEL DE RECEBER UMA PEÇA
+        //SEJA PORQUE ESTÁ VAZIA OU PORQUE A PEÇA VAI SER COMIDA
         private bool podeMover(Posicao pos)
         {
             Peca p = tab.peca(pos);//PEÇA p RECEBE A PEÇA NA POSIÇÃO pos DO TABULEIRO
@@ -20,6 +22,7 @@ namespace xadrez
             //RETORNA TRUE SE NÃO HOUVER PEÇA NA POSIÇÃO OU SE FOR UMA PEÇA ADVERSÁRIA
         }
 
+        //MECÂNICA DE MOVIMENTOS DA DAMA
         public override bool[,] movimentosPossiveis()
         {
             //MOVIMENTOS DA TORRE + MOVIMENTOS DO BISPO
@@ -145,7 +148,6 @@ namespace xadrez
                 pos.linha = pos.linha + 1;
                 pos.coluna = pos.coluna + 1;
             }
-
 
             return mat;
 

@@ -1,7 +1,6 @@
 ﻿using xadrez;
 using System;
 using tabuleiro;
-using xadrez;
 
 namespace projetoXadrezConsole
 {
@@ -20,16 +19,18 @@ namespace projetoXadrezConsole
                 Console.WriteLine($"Aguardando jogada: {partida.jogadorAtual}");
                 if (partida.xeque)
                 {
-                    Console.WriteLine("Xeque!");
+                    Console.WriteLine();
+                    Console.WriteLine("Xeque!!!!");
+                    Console.WriteLine();
                 }
             }
             else//SE PARTIDA TERMINADA
             {
+                Console.WriteLine();
                 Console.WriteLine("Xeque-mate!");
                 Console.WriteLine($"Vencedor: {partida.jogadorAtual}");
+                Console.WriteLine();
             }
-
-
             Console.WriteLine();
         }
 
@@ -112,8 +113,6 @@ namespace projetoXadrezConsole
             return new PosicaoXadrez(coluna, linha);
         }
 
-
-
         //MÉTODO QUE MOSTRA AS PEÇAS EM CORES DIFERENTES NO MOMENTO DA IMPRESSÃO
         public static void imprimirPeca(Peca peca)
         {
@@ -139,10 +138,6 @@ namespace projetoXadrezConsole
             }
             
         }
-
-
-
-
 
 
 

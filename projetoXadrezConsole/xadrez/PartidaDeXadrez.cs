@@ -6,6 +6,7 @@ namespace xadrez
 {
     class PartidaDeXadrez
     {
+        //ATRIBUTOS
         public Tabuleiro tab { get; private set; }
         public int turno { get; private set; } // A CADA JOGADA UM TURNO, 1,2,3....
         public Cor jogadorAtual { get; private set; }
@@ -36,29 +37,7 @@ namespace xadrez
         //MÉTODO QUE INSERE AS PEÇAS INICIAIS NO TABULEIRO
         private void colocarPecas()
         {
-            /*
-            colocarNovaPeca('c', 1, new Torre(tab, Cor.Branca));
-            colocarNovaPeca('c', 2, new Torre(tab, Cor.Branca));
-            colocarNovaPeca('d', 2, new Torre(tab, Cor.Branca));
-            colocarNovaPeca('e', 2, new Torre(tab, Cor.Branca));
-            colocarNovaPeca('e', 1, new Torre(tab, Cor.Branca));
-            colocarNovaPeca('d', 1, new Rei(tab, Cor.Branca));
-            colocarNovaPeca('c', 8, new Torre(tab, Cor.Preta));
-            colocarNovaPeca('c', 7, new Torre(tab, Cor.Preta));
-            colocarNovaPeca('d', 7, new Torre(tab, Cor.Preta));
-            colocarNovaPeca('e', 8, new Torre(tab, Cor.Preta));
-            colocarNovaPeca('e', 7, new Torre(tab, Cor.Preta));
-            colocarNovaPeca('d', 8, new Rei(tab, Cor.Preta));
-            */
-
-            /*
-            colocarNovaPeca('c', 1, new Torre(tab, Cor.Branca));
-            colocarNovaPeca('d', 1, new Rei(tab, Cor.Branca));
-            colocarNovaPeca('h', 7, new Torre(tab, Cor.Branca));
-            colocarNovaPeca('a', 8, new Rei(tab, Cor.Preta));
-            colocarNovaPeca('b', 8, new Torre(tab, Cor.Preta));
-            */
-
+            //CONSTRUTOR DE PEÃO PRECISA DA PARTIDA COMO ARGUMENTO
             colocarNovaPeca('a',2, new Peao(tab, Cor.Branca, this));
             colocarNovaPeca('b',2, new Peao(tab, Cor.Branca, this));
             colocarNovaPeca('c',2, new Peao(tab, Cor.Branca, this));
@@ -77,6 +56,7 @@ namespace xadrez
             colocarNovaPeca('g',1, new Cavalo(tab, Cor.Branca));
             colocarNovaPeca('h',1, new Torre(tab, Cor.Branca));
 
+            //CONSTRUTOR DE PEÃO PRECISA DA PARTIDA COMO ARGUMENTO
             colocarNovaPeca('a', 7, new Peao(tab, Cor.Preta, this));
             colocarNovaPeca('b', 7, new Peao(tab, Cor.Preta, this));
             colocarNovaPeca('c', 7, new Peao(tab, Cor.Preta, this));
@@ -234,6 +214,23 @@ namespace xadrez
                 throw new TabuleiroException("Voce não pode se colocar em xeque!");
             }
 
+            //#JOGADA ESPECIAL - PROMOÇÃO - PEÃO ALCANÇA A ÚLTIMA LINHA E VIRA DAMA
+            Peca p = tab.peca(destino);//PEÇA MOVIDA
+            if(p is Peao)
+            {
+                //SE FOR UM PEÃO BRANCO OU PRETO QUE CHEGOU NA ÚLTIMA LINHA
+                if( (p.cor == Cor.Branca && destino.linha == 0) ||
+                    (p.cor == Cor.Preta && destino.linha == 7))
+                {
+                    p = tab.retirarPeca(destino);//PEÃO SAI DO TABULEIRO
+                    pecas.Remove(p);//REMOVIDO DO CONJUNTO DE PEÇAS
+                    Peca dama = new Dama(tab, p.cor);
+                    tab.colocarPeca(dama, destino);//UMA DAMA DE MESMA COR É COLOCADA EM SEU LUGAR
+                    pecas.Add(dama);//ADICIONADA AO CONJUNTO DE PEÇAS
+                }
+            }
+
+
             //SE O JOGADOR ADVERSÁRIO ESTÁ EM XEQUE - NA PRÓXIMA ITERAÇÃO DO WHILE ELE APARECERÁ COMO "XEQUE"
             if (estaEmXeque(adversaria(jogadorAtual)))
             {
@@ -255,8 +252,8 @@ namespace xadrez
                 mudaJogador();
             }
 
+            
             //#JOGADA ESPECIAL EN PASSANT
-            Peca p = tab.peca(destino);//PEÇA MOVIDA
             //SE A PEÇA MOVIDA FOR UM PEÃO E TIVER SIDO MOVIDA DUAS CASAS A FRENTE (PRIMEIRA JOGADA DO PEÃO)
             if(p is Peao && (destino.linha == origem.linha -2 || destino.linha == origem.linha + 2))
             {
@@ -435,9 +432,6 @@ namespace xadrez
                 jogadorAtual = Cor.Branca;
             }
         }
-
-
-
 
 
 

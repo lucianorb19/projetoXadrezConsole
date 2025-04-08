@@ -2,6 +2,7 @@
 {
     class Posicao
     {
+        //ATRIBUTOS
         public int linha { get; set; }
         public int coluna { get; set; }
 
@@ -15,7 +16,6 @@
             this.coluna = coluna;
         }
 
-
         //DEMAIS MÉTODOS
         public override string ToString()
         {
@@ -28,6 +28,8 @@
             this.linha = linha;
             this.coluna = coluna;
         }
+
+
 
 
 

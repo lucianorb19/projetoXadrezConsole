@@ -14,13 +14,15 @@ namespace xadrez
             return "B";
         }
 
+        //MÉTODO QUE VERIFICA SE UMA DADA POSIÇÃO É PASSÍVEL DE RECEBER UMA PEÇA
+        //SEJA PORQUE ESTÁ VAZIA OU PORQUE A PEÇA VAI SER COMIDA
         private bool podeMover(Posicao pos)
         {
             Peca p = tab.peca(pos);
             return (p == null || p.cor != this.cor);
         }
 
-
+        //MECÂNICA DE MOVIMENTOS POSSÍVEIS DO BISPO
         public override bool[,] movimentosPossiveis()
         {
             bool[,] mat = new bool[tab.linhas, tab.colunas];//MATRIZ AUXILIAR COM O MESMO TAMANHO DO TABULEIRO
@@ -87,11 +89,7 @@ namespace xadrez
                 pos.linha = pos.linha + 1;
                 pos.coluna = pos.coluna + 1;
             }
-
-
-
             return mat;
-
         }
 
 

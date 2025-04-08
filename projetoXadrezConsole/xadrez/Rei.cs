@@ -20,6 +20,8 @@ namespace xadrez
             return $"R";
         }
 
+        //MÉTODO QUE VERIFICA SE UMA DADA POSIÇÃO É PASSÍVEL DE RECEBER UMA PEÇA
+        //SEJA PORQUE ESTÁ VAZIA OU PORQUE A PEÇA VAI SER COMIDA
         private bool podeMover(Posicao pos)
         {
             Peca p = tab.peca(pos);//PEÇA p RECEBE A PEÇA NA POSIÇÃO pos DO TABULEIRO
@@ -27,7 +29,7 @@ namespace xadrez
             //RETORNA TRUE SE NÃO HOUVER PEÇA NA POSIÇÃO OU SE FOR UMA PEÇA ADVERSÁRIA
         }
 
-        //MÉTODO QUE TESTA SE A TORRE ESTÁ ADEQUADA PARA O ROQUE - DADA UM POSIÇÃO DELA
+        //MÉTODO QUE TESTA SE A TORRE ESTÁ ADEQUADA PARA O ROQUE - DADA A POSIÇÃO DELA
         public bool testeTorreParaRoque(Posicao pos)
         {
             Peca p = tab.peca(pos);
@@ -37,6 +39,7 @@ namespace xadrez
             return (p != null && p is Torre && p.cor == this.cor && p.qteMovimentos == 0);
         }
 
+        //MECÂNICA DE MOVIMENTOS DO REI
         public override bool[,] movimentosPossiveis()
         {
             bool[,] mat = new bool[tab.linhas, tab.colunas];//MATRIZ AUXILIAR COM O MESMO TAMANHO DO TABULEIRO
@@ -145,6 +148,9 @@ namespace xadrez
 
             return mat;//RETORNO É A MATRIZ COM POSIÇÕES TRUE ONDE A PEÇA PODE SE MOVER
         }
+
+
+
 
 
     }
