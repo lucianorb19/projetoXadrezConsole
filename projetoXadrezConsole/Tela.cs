@@ -163,7 +163,7 @@ namespace projetoXadrezConsole
                     entrada = $"{coluna}" + $"{entrada[1]}";
 
                     char linha = entrada[1];//AUXILIARES PARA ESCREVER MENOS
-                    int int_linha = linha - '0';//-----MACETE - CONVERTER A LINHA PARA INTEIRO
+                    int int_linha = linha - '0';//-----MACETE - CONVERTER A LINHA PARA INTEIRO, '2' vira 2
 
                     foreach (char c in colunas)
                     {
@@ -173,7 +173,7 @@ namespace projetoXadrezConsole
                             {
                                 if (l == int_linha)//HAVENDO UMA LINHA VÁLIDA
                                 {
-                                    valida = true;//CONDIÇÃO PARA SAIR DO LAÇO DE ENTRADA ERRADA
+                                    valida = true;//CONDIÇÃO PARA SAIR DO LAÇO
                                     return entrada; //RETORNO A ENTRADA PROCESSADA
                                 }
                             }
