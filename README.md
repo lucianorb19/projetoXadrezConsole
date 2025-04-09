@@ -1,9 +1,9 @@
-# PROJETO XADREZCONSOLE : chess_pawn : : desktop_computer :
+# PROJETO XADREZCONSOLE :chess_pawn: :desktop_computer:
 
 Jogo de xadrez, via console, construído na linguagem **_C#_**, no **_Visual Studio_**, seguindo as orientações do professor [Nélio Alves](https://www.udemy.com/course/programacao-orientada-a-objetos-csharp/?couponCode=ST13MT80425G3).
 
 
-## CLASSES DO PROJETO : books :
+## CLASSES DO PROJETO :books:
 
 * tabuleiro
     * Cor.cs
@@ -23,7 +23,7 @@ Jogo de xadrez, via console, construído na linguagem **_C#_**, no **_Visual Stu
 * Program.cs
 * Tela.cs
 
-## OBSERVAÇÕES : bookmark_tabs :
+## OBSERVAÇÕES :bookmark_tabs:
 
 Em relação ao projeto original, foram feitas alterações na maneira como a tela é mostrada ao usuário. Uma abordagem mais amigável.
 E também foram feitas verificação na entrada do usuário, utilizando os métodos lerPosicaoXadrez() e processaEntrada(), que garante:
@@ -33,7 +33,7 @@ E também foram feitas verificação na entrada do usuário, utilizando os méto
 * Entrada não pode ser vazia;
 * Espaços antes e depois são retirados;
 
-: scroll :
+:scroll:
 ```
 private static string processaEntrada()
 {
